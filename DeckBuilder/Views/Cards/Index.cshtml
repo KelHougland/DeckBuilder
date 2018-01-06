@@ -1,0 +1,20 @@
+﻿@model List<DeckBuilder.Models.Card>
+
+@{ ViewBag.Title = "Cards";}
+
+<h1>@ViewBag.Title</h1>
+
+<table class="table">
+
+    @foreach (var card in Model)
+    {
+        <tr>
+            <td>@card.Name</td>
+            <td>@card.Element</td>
+            <td>@card.Type</td>
+
+        </tr>
+
+    }
+
+</table>

@@ -14,7 +14,7 @@ namespace DeckBuilder.Models
         public string Role { get; set; }
         public string Type { get; set; }
         public string Job { get; set; }
-        public int Power { get; set; }
+        public string Power { get; set; }
         public int ID { get; set; }
 
     }
