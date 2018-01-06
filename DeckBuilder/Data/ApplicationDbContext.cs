@@ -10,6 +10,17 @@ namespace DeckBuilder.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Card> Cards { get; set; }
+
+        public DbSet<Deck> Decks { get; set; }
+
+        public DbSet<Collection> Collections { get; set; }
+
+        public DbSet<CardDeck> CardDecks { get; set; }
+
+        public DbSet<CardCollection> CardCollections { get; set; }
+
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
