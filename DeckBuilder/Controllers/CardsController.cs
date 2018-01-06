@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using DeckBuilder.Data;
 using DeckBuilder.Models;
 
+
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace DeckBuilder.Controllers
@@ -26,6 +27,7 @@ namespace DeckBuilder.Controllers
         public IActionResult Index()
         {
             IList<Card> cards = context.Cards.ToList();
+
 
             return View(cards);
         }
