@@ -7,6 +7,8 @@ namespace DeckBuilder.Models
 {
     public class CardCollection
     {
+        public int ID { get; set; }
+
         public int CollectionID { get; set; }
         public Collection Collection { get; set; }
 
