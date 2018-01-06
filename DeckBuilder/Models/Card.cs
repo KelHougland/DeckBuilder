@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DeckBuilder.Models
 {
@@ -17,5 +19,9 @@ namespace DeckBuilder.Models
         public string Power { get; set; }
         public int ID { get; set; }
 
+
+
     }
+
+    
 }
