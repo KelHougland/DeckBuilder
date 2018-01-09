@@ -1,0 +1,22 @@
+﻿@model DeckBuilder.ViewModels.ViewDeckViewModel
+
+    @{ ViewBag.Title = Model.Deck.Name}
+
+<h1>@ViewBag.Title</h1>
+
+@if (Model.Cards.Count > 0)
+{
+<ul>
+    @foreach (var card in Model.Cards)
+    {
+        <li>@card.Card  : @card.Amount</li>
+
+    }
+</ul>
+}
+
+@if (Model.Cards.Count == 0)
+{
+    <p>This deck has no cards!</p>
+
+}

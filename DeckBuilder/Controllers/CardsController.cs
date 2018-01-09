@@ -42,9 +42,33 @@ namespace DeckBuilder.Controllers
 
             if (cardSortViewModel.Name != "all")
             {
-
+                cards = cards.Where(x => x.Name == cardSortViewModel.Name).ToList();
             }
 
+            if (cardSortViewModel.Job != "all")
+            {
+                cards = cards.Where(x => x.Job == cardSortViewModel.Job).ToList();
+            }
+
+            if (cardSortViewModel.Element != "all")
+            {
+                cards = cards.Where(x => x.Element == cardSortViewModel.Element).ToList();
+            }
+
+            if (cardSortViewModel.Role != "all")
+            {
+                cards = cards.Where(x => x.Role == cardSortViewModel.Role).ToList();
+            }
+
+            if (cardSortViewModel.Type != "all")
+            {
+                cards = cards.Where(x => x.Type == cardSortViewModel.Type).ToList();
+            }
+
+            if (cardSortViewModel.Cost != "all")
+            {
+                cards = cards.Where(x => x.Cost == int.Parse(cardSortViewModel.Cost)).ToList();
+            }
 
             CardSortViewModel newCardSortViewModel = new CardSortViewModel(cards);
 

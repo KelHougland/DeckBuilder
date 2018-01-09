@@ -14,5 +14,7 @@ namespace DeckBuilder.Models
 
         public int CardID { get; set; }
         public Card Card { get; set; }
+
+        public int Amount { get; set; }
     }
 }
