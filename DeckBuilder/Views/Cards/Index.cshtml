@@ -63,7 +63,7 @@
     @foreach (var card in Model.Cards)
     {
         <div>
-            <img src=@String.Format("images/{0}.jpg", card.Code) height="300" width="200"/>
+            <a href="@String.Format("images/{0}.jpg", card.Code)" target="_blank"><img src=@String.Format("images/{0}.jpg", card.Code) height="300" width="200"/></a>
         </div>
 
 
