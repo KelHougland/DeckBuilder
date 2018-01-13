@@ -13,32 +13,32 @@ namespace DeckBuilder.ViewModels
 
         public List<SelectListItem> Names { get; set; }
 
-        [Display(Name = "Name")]
+        [Display(Name = "Name:")]
         public string Name { get; set; }
 
         public List<SelectListItem> Jobs { get; set; }
 
-        [Display(Name = "Job")]
+        [Display(Name = "Job:")]
         public string Job { get; set; }
 
         public List<SelectListItem> Elements { get; set; }
 
-        [Display(Name = "Element")]
+        [Display(Name = "Element:")]
         public string Element { get; set; }
 
         public List<SelectListItem> Costs { get; set; }
 
-        [Display(Name = "Cost")]
+        [Display(Name = "Cost:")]
         public string Cost { get; set; }
 
         public List<SelectListItem> Roles { get; set; }
 
-        [Display(Name = "Role")]
+        [Display(Name = "Role:")]
         public string Role { get; set; }
 
         public List<SelectListItem> Types { get; set; }
 
-        [Display(Name = "Type")]
+        [Display(Name = "Type:")]
         public string Type { get; set; }
 
         public IEnumerable<Card> Cards { get; set; }

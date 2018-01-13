@@ -1,6 +1,6 @@
 ﻿@model DeckBuilder.ViewModels.ViewDeckViewModel
 
-    @{ ViewBag.Title = Model.Deck.Name}
+    @{ ViewBag.Title = Model.Deck.Name;}
 
 <h1>@ViewBag.Title</h1>
 
@@ -9,7 +9,7 @@
 <ul>
     @foreach (var card in Model.Cards)
     {
-        <li>@card.Card  : @card.Amount</li>
+        <li>@card.Card.Name  : @card.Amount</li>
 
     }
 </ul>
@@ -20,3 +20,5 @@
     <p>This deck has no cards!</p>
 
 }
+
+@*<p><a asp-controller="Deck" asp-action="Edit" asp-route-id="@Model.Deck.ID">Edit this Deck</a></p>*@

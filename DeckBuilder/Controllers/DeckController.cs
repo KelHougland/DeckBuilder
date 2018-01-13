@@ -54,9 +54,9 @@ namespace DeckBuilder.Controllers
             return View(addDeckViewModel);
         }
 
-        public IActionResult ViewMenu(int id)
+        public IActionResult ViewDeck(int id)
         {
-            List<CardDeck> deckCards = context.CardDecks.Include(item => item.Card).Where(cd => cd.DeckID == id).ToList();
+            List<CardDeck> deckCards = context.CardDecks.Include(deckCard => deckCard.Card).Where(cd => cd.DeckID == id).ToList();
             Deck currentDeck = context.Decks.Single(c => c.ID == id);
 
             ViewDeckViewModel viewDeckViewModel = new ViewDeckViewModel();

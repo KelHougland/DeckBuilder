@@ -8,8 +8,7 @@
 
     @foreach (var deck in Model)
      {
-        <li>@deck.Name</li>
-        @*<li><a asp-controller="Deck" asp-action="ViewDeck" asp-route-id="@deck.ID">@Deck.Name</a></li>*@
+        <li><a asp-controller="Deck" asp-action="ViewDeck" asp-route-id="@deck.ID">@deck.Name</a></li>
     }
 </ul>
 
