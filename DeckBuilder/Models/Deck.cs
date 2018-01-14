@@ -10,5 +10,13 @@ namespace DeckBuilder.Models
         public string Name { get; set; }
         public int ID { get; set; }
         public IList<CardDeck> CardDecks { get; set; }
+        public int Amount { get; set; }
+
+        public Deck()
+        {
+            Amount = 0;
+        }
+
+
     }
 }
