@@ -67,5 +67,67 @@ namespace DeckBuilder.Controllers
             return View(viewDeckViewModel);
         }
 
+        public IActionResult EditDeck(int id)
+        {
+            List<CardDeck> deckCards = context.CardDecks.Include(deckCard => deckCard.Card).Where(cd => cd.DeckID == id).ToList();
+            Deck currentDeck = context.Decks.Single(c => c.ID == id);
+
+            IList<Card> cards = context.Cards.ToList();
+
+            EditDeckViewModel editDeckViewModel = new EditDeckViewModel(cards);
+
+            editDeckViewModel.CardDecks = deckCards;
+            editDeckViewModel.Deck = currentDeck;
+
+            return View(editDeckViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult EditDeck(EditDeckViewModel editDeckViewModel)
+        {
+            int id = editDeckViewModel.DeckID;
+            List<CardDeck> deckCards = context.CardDecks.Include(deckCard => deckCard.Card).Where(cd => cd.DeckID == id).ToList();
+            Deck currentDeck = context.Decks.Single(c => c.ID == id);
+
+            IList<Card> cards = context.Cards.ToList();
+
+            if (editDeckViewModel.Name != "all")
+            {
+                cards = cards.Where(x => x.Name == editDeckViewModel.Name).ToList();
+            }
+
+            if (editDeckViewModel.Job != "all")
+            {
+                cards = cards.Where(x => x.Job == editDeckViewModel.Job).ToList();
+            }
+
+            if (editDeckViewModel.Element != "all")
+            {
+                cards = cards.Where(x => x.Element == editDeckViewModel.Element).ToList();
+            }
+
+            if (editDeckViewModel.Role != "all")
+            {
+                cards = cards.Where(x => x.Role == editDeckViewModel.Role).ToList();
+            }
+
+            if (editDeckViewModel.Type != "all")
+            {
+                cards = cards.Where(x => x.Type == editDeckViewModel.Type).ToList();
+            }
+
+            if (editDeckViewModel.Cost != "all")
+            {
+                cards = cards.Where(x => x.Cost == int.Parse(editDeckViewModel.Cost)).ToList();
+            }
+
+            EditDeckViewModel newEditDeckViewModel = new EditDeckViewModel(cards);
+
+            newEditDeckViewModel.CardDecks = deckCards;
+            newEditDeckViewModel.Deck = currentDeck;
+
+            return View(newEditDeckViewModel);
+        }
+
     }
 }
