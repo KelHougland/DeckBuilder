@@ -15,6 +15,7 @@ namespace DeckBuilder.ViewModels
         public Deck Deck { get; set; }
 
         public int DeckID { get; set; }
+        public int CardID { get; set; }
 
         public List<SelectListItem> Names { get; set; }
 
