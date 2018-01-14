@@ -87,6 +87,17 @@
     {
         <div>
             <a href="@String.Format("/images/{0}.jpg", card.Code)" target="_blank"><img src=@String.Format("/images/{0}.jpg", card.Code) height="300" width="200" /></a>
+            <form asp-controller="Deck" asp-action="AddCard" method="post">
+                <input type="hidden" name="DeckID" value="@Model.Deck.ID"/>
+                <input type="hidden" name="CardID" value="@card.ID"/>
+                <input type="submit" value="Add Card" />
+            </form>
+            <form asp-controller="Deck" asp-action="RemoveCard" method="post">
+                <input type="hidden" name="DeckID" value="@Model.Deck.ID" />
+                <input type="hidden" name="CardID" value="@card.ID" />
+                <input type="submit" value="Remove Card" />
+            </form>
+
         </div>
 
 

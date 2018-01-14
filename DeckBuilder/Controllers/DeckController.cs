@@ -26,7 +26,7 @@ namespace DeckBuilder.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            List<Deck> decks = context.Decks.ToList(); 
+            List<Deck> decks = context.Decks.ToList();
 
             return View(decks);
         }
@@ -129,5 +129,88 @@ namespace DeckBuilder.Controllers
             return View(newEditDeckViewModel);
         }
 
+        [HttpPost]
+        public IActionResult AddCard(EditDeckViewModel editDeckViewModel)
+        {
+            int id = editDeckViewModel.DeckID;
+            int cardID = editDeckViewModel.CardID;
+
+            Deck currentDeck = context.Decks.Single(c => c.ID == id);
+            Card currentCard = context.Cards.Single(c => c.ID == cardID);
+
+            IList<Card> cards = context.Cards.ToList();
+
+            IList<CardDeck> existingCardDecks = context.CardDecks.Where(c => c.CardID == currentCard.ID).Where(c => c.DeckID == currentDeck.ID).ToList();
+
+            if (currentDeck.Amount < 50)
+            {
+                if ((existingCardDecks.Count() == 1) && (existingCardDecks[0].Amount < 3))
+                {
+                    existingCardDecks[0].Amount += 1;
+                    currentDeck.Amount += 1;
+                    context.SaveChanges();
+                }
+
+                if (existingCardDecks.Count() == 0)
+                {
+                    CardDeck newCardDeck = new CardDeck
+                    {
+                        DeckID = id,
+                        CardID = cardID,
+                        Amount = 1
+                    };
+                    currentDeck.Amount += 1;
+                    context.CardDecks.Add(newCardDeck);
+                    context.SaveChanges();
+
+                }
+
+            }
+
+
+            EditDeckViewModel newEditDeckViewModel = new EditDeckViewModel(cards);
+            List<CardDeck> deckCards = context.CardDecks.Include(deckCard => deckCard.Card).Where(cd => cd.DeckID == id).ToList();
+            newEditDeckViewModel.CardDecks = deckCards;
+            newEditDeckViewModel.Deck = currentDeck;
+
+            string reEdit = "/Deck/EditDeck/" + id.ToString();
+
+            return Redirect(reEdit);
+        }
+
+        [HttpPost]
+        public IActionResult RemoveCard(EditDeckViewModel editDeckViewModel)
+        {
+            int id = editDeckViewModel.DeckID;
+            int cardID = editDeckViewModel.CardID;
+
+            Deck currentDeck = context.Decks.Single(c => c.ID == id);
+            Card currentCard = context.Cards.Single(c => c.ID == cardID);
+
+            IList<Card> cards = context.Cards.ToList();
+
+            IList<CardDeck> existingCardDecks = context.CardDecks.Where(c => c.CardID == currentCard.ID).Where(c => c.DeckID == currentDeck.ID).ToList();
+
+
+            if ((existingCardDecks.Count() == 1) && (existingCardDecks[0].Amount > 0))
+            {
+                existingCardDecks[0].Amount -= 1;
+                currentDeck.Amount -= 1;
+                if (existingCardDecks[0].Amount == 0)
+                {
+                    context.CardDecks.Remove(existingCardDecks[0]);
+                }
+                context.SaveChanges();
+            }
+
+            EditDeckViewModel newEditDeckViewModel = new EditDeckViewModel(cards);
+            List<CardDeck> deckCards = context.CardDecks.Include(deckCard => deckCard.Card).Where(cd => cd.DeckID == id).ToList();
+            newEditDeckViewModel.CardDecks = deckCards;
+            newEditDeckViewModel.Deck = currentDeck;
+
+            string reEdit = "/Deck/EditDeck/" + id.ToString();
+
+            return Redirect(reEdit);
+        }
     }
 }
