@@ -1,8 +1,8 @@
 ﻿@model DeckBuilder.ViewModels.EditDeckViewModel
 
-@{ ViewBag.Title = "Editing " + Model.Deck.Name;}
 
-<h1>@ViewBag.Title</h1>
+
+<h1>Editing <a asp-controller="Deck" asp-action="ViewDeck" asp-route-id="@Model.Deck.ID">@Model.Deck.Name</a></h1>
 
 <head>
     <style>
@@ -90,12 +90,12 @@
             <form asp-controller="Deck" asp-action="AddCard" method="post">
                 <input type="hidden" name="DeckID" value="@Model.Deck.ID"/>
                 <input type="hidden" name="CardID" value="@card.ID"/>
-                <input type="submit" value="Add Card" />
+                <input type="submit" value="Add Card" style="float:left"/>
             </form>
             <form asp-controller="Deck" asp-action="RemoveCard" method="post">
                 <input type="hidden" name="DeckID" value="@Model.Deck.ID" />
                 <input type="hidden" name="CardID" value="@card.ID" />
-                <input type="submit" value="Remove Card" />
+                <input type="submit" value="Remove Card" style="float:right"/>
             </form>
 
         </div>

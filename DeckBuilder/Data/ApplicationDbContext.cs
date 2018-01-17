@@ -19,7 +19,7 @@ namespace DeckBuilder.Data
         public DbSet<CardDeck> CardDecks { get; set; }
 
         public DbSet<CardCollection> CardCollections { get; set; }
-
+        
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
